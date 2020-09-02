@@ -17,6 +17,7 @@ Library github link : https://github.com/eclipse/paho.mqtt.cpp
 #include <cstdlib>
 #include <cstring>
 #include <ctime>
+#include <jsoncpp/json/json.h>
 #include "mqtt/async_client.h"
 
 using namespace std;
@@ -53,6 +54,7 @@ const string PERSIST_DIRS[4] {"floor5/persist"};
 void client_define (int n, int pers_dir) {
     string client_name = "cli"+pers_dir;
     string connopts_name = "connopts"+pers_dir;
+    string topic_names = "top"+pers_dir;
     int n;
     int pers_dir;
     char* top = [];
@@ -62,12 +64,35 @@ void client_define (int n, int pers_dir) {
     
 }
 
+string random_message_generator(int n) {
+    int tstp =123;
+    std::random_device drand;
+    std::mt19937 gen(drand());
+    std::uniform_real_distribution<double> distemp(25,50);
+    std::uniform_real_distribution<double> dishum(25,30);
+    std::uniform_int_distribution<int> dispr(1,100);
+    std::uniform_real_distribution<double> disph(1,14);
+    Json::Value val;
+    val = {
+        "device_id" : n, "timestamp" : tstp, "temperature" : distemp(gen), "humidity" : dishum(gen), "air_pressure" : dispr(gen), "ph" : disph(gen)  
+    };
+    
+    Json::StyledWriter styled;
+    string msg = styled.write(val);
+    return msg;
+
+
+}
+
 void temp_client_pub () {
+
+
     try
     {
         cout<<"Connecting to server ..' "<<address<<" '.."<<flush; //std::flush used to display logging activity of thread before completion
         for (int i=0; i<6; i++)
         {
+            char* msg = []
             client_name[i].connect(connopts)->wait();
             cout<<"OK\n"<<endl; //another available option is <<flush;
 
@@ -78,15 +103,18 @@ void temp_client_pub () {
             while(true) {
                 this_thread::sleep_until(freq); //data gets pushed every 500ms
 
-                //Data reading
-                //yet to write code
-                //data reading done
+                msg[i] = random_message_generator(i);
+                string payload = msg[i];
+                cout<<payload<<endl;
+                top0[i].publish(std::move(payload));
 
-                //payload generation
-                //yet to write code
-                //payload generation done
+                timebuffer+=PERIOD;
+
+
             }
-
+            //Disconnect
+            cout<<"\nDisconnecting.."<<flush;
+            
 
         }
 
@@ -123,10 +151,11 @@ int main(int argc, char* argv[])
 
     //initiating threads for publishing data
 
-    for(int i=0; i<4; i++) //where i<4 is for the number of floors (5)
+    for(int i=0; i<30; i++) //for 30 temp bots
     {
         char* th = [];
         std::thread th[i] (temp_client_pub) 
+        th[i].join();
     }
 
 }
