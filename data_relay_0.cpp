@@ -36,7 +36,7 @@ const int QOS = 1; //PUB request will be met with a PUBACK request
 
 const auto PERIOD = seconds(5); //time alloted for one message (std::chrono::seconds)
 
-const int MAX_BUFFERED_MESSAGES = 20; //1 bots can send 10 messages at a time, 1 message each
+const int MAX_BUFFERED_MESSAGES = 20; //1 bot can send 10 messages in 5 sec, 1 message each
 
 //Time taken to deliver messages = PERIOD*MAX_BUFFERED_MESSAGES = 5*50 = 4 mins 10 secs
 
