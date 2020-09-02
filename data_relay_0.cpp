@@ -1,7 +1,6 @@
 /*This code is for Stage 0 of SRA task : DATA RELAY
 Link to the task : https://github.com/SRA-VJTI/practice-assignments
 Library used : Paho Eclipse MQTT for C++
-Code for JSON stream and Publishing is yet to be included 
 The structure of this code is as follows:
 There are 5 floors of a building with 10 edge boards on each floor
 Each floor consists of 6 temperature_sensor_bots and 4 distance_sensor_bots
