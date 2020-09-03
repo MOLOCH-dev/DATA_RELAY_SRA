@@ -51,15 +51,16 @@ const string PERSIST_DIRS[3] {"floor4/persist"};
 const string PERSIST_DIRS[4] {"floor5/persist"};
 
 void client_define (int n, int pers_dir) {
-    string client_name = "cli"+pers_dir;
+    string client_name = n+"cliID"+pers_dir;
+    string cli = n+"cli"+pers_dir;
     string connopts_name = "connopts"+pers_dir;
-    string topic_names = "top"+pers_dir;
+    string topic_name = n+"top"+pers_dir;
     int n;
     int pers_dir;
     char* top = [];
     char* connopts = [];
-    mqtt::async_client client_name[i](address, clients[n], MAX_BUFFERED_MESSAGES, PERSIST_DIRS[pers_dir]);
-    mqtt::topic top[n] = (cli[i], TEMP_TOPICS[pers_dir], QOS, true);
+    mqtt::async_client cli(address, client_name , MAX_BUFFERED_MESSAGES, PERSIST_DIRS[pers_dir]);
+    mqtt::topic topic_name = (cli, TEMP_TOPICS[pers_dir], QOS, true);
     
 }
 
