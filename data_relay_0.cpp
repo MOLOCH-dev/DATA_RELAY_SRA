@@ -1,6 +1,7 @@
 /*This code is for Stage 0 of SRA task : DATA RELAY
 Link to the task : https://github.com/SRA-VJTI/practice-assignments
 Library used : Paho Eclipse MQTT for C++
+Code for JSON stream and Publishing is yet to be included 
 The structure of this code is as follows:
 There are 5 floors of a building with 10 edge boards on each floor
 Each floor consists of 6 temperature_sensor_bots and 4 distance_sensor_bots
@@ -36,7 +37,7 @@ const int QOS = 1; //PUB request will be met with a PUBACK request
 
 const auto PERIOD = seconds(5); //time alloted for one message (std::chrono::seconds)
 
-const int MAX_BUFFERED_MESSAGES = 20; //1 bot can send 10 messages in 5 sec, 1 message each
+const int MAX_BUFFERED_MESSAGES = 20; //1 bots can send 10 messages at a time, 1 message each
 
 //Time taken to deliver messages = PERIOD*MAX_BUFFERED_MESSAGES = 5*50 = 4 mins 10 secs
 
@@ -51,16 +52,17 @@ const string PERSIST_DIRS[3] {"floor4/persist"};
 const string PERSIST_DIRS[4] {"floor5/persist"};
 
 void client_define (int n, int pers_dir) {
-    string client_name = n+"cliID"+pers_dir;
-    string cli = n+"cli"+pers_dir;
+    //string client_name = "cli"+pers_dir;
     string connopts_name = "connopts"+pers_dir;
-    string topic_name = n+"top"+pers_dir;
+    string topic_names = "top"+pers_dir;
     int n;
     int pers_dir;
     char* top = [];
     char* connopts = [];
-    mqtt::async_client cli(address, client_name , MAX_BUFFERED_MESSAGES, PERSIST_DIRS[pers_dir]);
-    mqtt::topic topic_name = (cli, TEMP_TOPICS[pers_dir], QOS, true);
+    char* client_names = [pers_dir+"client1", pers_dir+"client2", pers_dir+"client3", pers_dir+"client4", pers_dir+"client5", pers_dir+"client6"];
+    mqtt::async_client cli(address, client_names[i], MAX_BUFFERED_MESSAGES, PERSIST_DIRS[pers_dir]);
+    mqtt::topic top[n] = (cli, TEMP_TOPICS[pers_dir], QOS, true);
+    temp_client_pub(&cli);
     
 }
 
@@ -84,7 +86,7 @@ string random_message_generator(int n) {
 
 }
 
-void temp_client_pub () {
+void temp_client_pub (mqtt::async_client &client) {
 
 
     try
@@ -93,7 +95,7 @@ void temp_client_pub () {
         for (int i=0; i<6; i++)
         {
             char* msg = []
-            client_name[i].connect(connopts)->wait();
+            client.connect(connopts)->wait();
             cout<<"OK\n"<<endl; //another available option is <<flush;
 
             char timebuffer[32];
@@ -113,16 +115,19 @@ void temp_client_pub () {
 
             }
             //Disconnect
-            cout<<"\nDisconnecting.."<<flush;
+            //cout<<"\nDisconnecting.."<<flush;
+            //client.
             
 
         }
 
     }
-    catch(const std::exception& e)
+    catch(const mqtt::exception& e)
     {
-        std::cerr << e.what() << '\n';
+        std::cerr << e.what() <<endl;
+        return 1
     }
+    return 0;
     
 }
 
@@ -151,7 +156,7 @@ int main(int argc, char* argv[])
 
     //initiating threads for publishing data
 
-    for(int i=0; i<30; i++) //for 30 temp bots
+    for(int i=0; i<5; i++) //for 5 floors
     {
         char* th = [];
         std::thread th[i] (temp_client_pub) 
