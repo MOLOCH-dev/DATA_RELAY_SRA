@@ -37,11 +37,15 @@ Technologies used for this project
 
 ### File Structure
     .
-    ├── data_relay_sra_pub.c                # Publishes data from 50 sensor bots using MQTT at a  frequency of 500ms
+    ├── data_relay_sra_pub.c        # Publishes data from 50 sensor bots using MQTT at a  frequency of 500ms
     ├── Report_DATA_RELAY.pdf                  # Project report
    
-    ├── src                     # Source files
-    ├── json.c                  # Library for parsing Json
+    ├── src                         # Source files
+        ├── data_relay_sra_pub.c    # Publishes data from 50 sensor bots using MQTT at a  frequency of 500ms
+        ├── data_relay_sra_sub.c    # Suscriber that receives data from 50 sensor bots as JSON streams, parses it and compresses after every 2 minutes
+        ├── cpp_test                # Contains test code for Eclipse Paho CPP library
+            ├── data_relay_0.cpp    # Publishes data from 50 sensor bots using MQTT at a  frequency of 500ms
+    ├── json.c                      # Library for parsing Json
     ├── LICENSE
     ├── README.md 
 
