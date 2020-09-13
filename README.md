@@ -68,7 +68,7 @@ gcc -v
 
 * **GCC v7.5.0
 
-  You can visit the [this installation guide](https://linuxize.com/post/how-to-install-gcc-compiler-on-ubuntu-18-04/ubuntu files) for the installation steps.
+  You can visit the [this installation guide](https://linuxize.com/post/how-to-install-gcc-compiler-on-ubuntu-18-04) for the installation steps.
   
  
 ```sh
