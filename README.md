@@ -138,9 +138,8 @@ gcc data_relay_sra_sub.c -o data_relay_sra_sub json.c -lm -lmosquitto
 
 <!-- RESULTS AND DEMO -->
 ## Results and Demo
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space.  
-[**result screenshots**](https://result.png)  
-![**result gif or video**](https://drive.google.com/file/d/1vu0kHFow-P4ALGTotDlIIeDD5RTnYyN4/view?usp=sharing)  
+  
+[**Result**](https://drive.google.com/file/d/1vu0kHFow-P4ALGTotDlIIeDD5RTnYyN4/view?usp=sharing)  
 
 
 
@@ -157,7 +156,7 @@ Use this space to show useful examples of how a project can be used. Additional 
 
 <!-- TROUBLESHOOTING -->
 ## Troubleshooting
-* The file data_relay_sra_pub.c is supposed to run in an infinite loop, but a segmentation error is encountered after 2-3 loops
+* The file data_relay_sra_pub.c is supposed to run in an infinite loop, but a segmentation error is encountered after 2 loops
 
 
 <!-- CONTRIBUTORS -->
