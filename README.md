@@ -24,11 +24,11 @@ A project in MQTT protocol using [Eclipse Mosquitto library](https://github.com/
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-[![Product Name Screen Shot][product-screenshot]](https://example.com)  
+
 
 Aim : This project aims to employ MQTT protocol and multithreading to publish information from 50 sensor bots every 500ms, read the messages from a single subscriber, parse and segregate the data types and compress the messages every 2 minutes
 and Description of project.  
-Refer this [documentation](https://link/to/report/)
+Refer this [documentation](https://github.com/MOLOCH-dev/DATA_RELAY_SRA/blob/master/Report%20_DATA_RELAY.pdf)
 
 ### Tech Stack
 Technologies used for this project
@@ -56,7 +56,7 @@ Technologies used for this project
 
 ### Prerequisites
 
-* See [SETUP.md](https://link/to/setup.md) if there are plenty of instructions
+
 * In Ubuntu:
 ```sh
 sudo apt-get install gcc mosquitto mosquitto-clients libmosquitto-dev
