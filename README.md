@@ -38,12 +38,9 @@ Technologies used for this project
 ### File Structure
     .
     ├── data_relay_sra_pub.c                # Publishes data from 50 sensor bots using MQTT at a  frequency of 500ms
-    ├── docs                    # Documentation files (alternatively `doc`)
-    │   ├── report.pdf          # Project report
-    │   └── results             # Folder containing screenshots, gifs, videos of results
-    ├── src                     # Source files (alternatively `lib` or `app`)
-    ├── ...
-    ├── ...
+    ├── Report_DATA_RELAY.pdf                  # Project report
+   
+    ├── src                     # Source files
     ├── json.c                  # Library for parsing Json
     ├── LICENSE
     ├── README.md 
