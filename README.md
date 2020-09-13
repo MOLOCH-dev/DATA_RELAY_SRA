@@ -151,6 +151,7 @@ gcc data_relay_sra_sub.c -o data_relay_sra_sub json.c -lm -lmosquitto
 - [x] Created a subscriber client and parsed the Json streams of received payloads
 - [x] Implemented run-length-encoding to write the compressed data into a file
 - [ ] Fix the segmentation error:core dumped that occurs after 2-3 loops of publishing from 50 bots
+- [ ] Fix library linking error for json-parser
 - [ ] Create a python implementation of this project with interactive UI
 
 
@@ -170,10 +171,11 @@ gcc data_relay_sra_sub.c -o data_relay_sra_sub json.c -lm -lmosquitto
 ## Acknowledgements and Resources
 * [SRA VJTI](http://sra.vjti.info/)  
 * References:
-* 
+* [Theory](https://www.hivemq.com/mqtt-essentials/)
+* [Json Library](https://github.com/udp/json-parser/blob/master/json.h)
+* [Compression Algorithm in Cpp](https://www.geeksforgeeks.org/run-length-encoding/)
 ...
 
 
 <!-- LICENSE -->
-## License
-Describe your [License](LICENSE) for your project. 
+
