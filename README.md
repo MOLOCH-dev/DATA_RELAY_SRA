@@ -147,7 +147,7 @@ gcc data_relay_sra_sub.c -o data_relay_sra_sub json.c -lm -lmosquitto
 
 <!-- FUTURE WORK -->
 ## Future Work
-* See [todo.md](https://todo.md) for seeing developments of this project
+
 - [x] Created 50 bots to publish data at a frequency of 500ms
 - [x] Created a subscriber client and parsed the Json streams of received payloads
 - [x] Implemented run-length-encoding to write the compressed data into a file
